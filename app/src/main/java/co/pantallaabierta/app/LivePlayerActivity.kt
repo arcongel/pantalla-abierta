@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.webkit.CookieManager
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -25,6 +26,9 @@ class LivePlayerActivity : Activity() {
     companion object {
         const val EXTRA_CHANNEL_ID = "youtube_channel"
         const val EXTRA_NAME = "name"
+
+        /** Página del reproductor, publicada con GitHub Pages desde la carpeta docs/ del repositorio. */
+        const val PLAYER_PAGE = "https://arcongel.github.io/pantalla-abierta/player.html"
     }
 
     private lateinit var root: FrameLayout
@@ -81,25 +85,10 @@ class LivePlayerActivity : Activity() {
         chromeClient = chrome
         web.webChromeClient = chrome
 
-        val src = "https://www.youtube.com/embed/live_stream?channel=" + Uri.encode(channelId) +
-            "&autoplay=1&playsinline=1&rel=0&hl=es"
-        val html = """
-            <!DOCTYPE html>
-            <html><head>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <style>
-              html, body { margin: 0; height: 100%; background: #000; }
-              iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
-            </style>
-            </head><body>
-            <iframe src="$src"
-              allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-              allowfullscreen
-              referrerpolicy="strict-origin-when-cross-origin"></iframe>
-            </body></html>
-        """.trimIndent()
-        // YouTube exige saber desde qué página se incrusta el reproductor.
-        web.loadDataWithBaseURL("https://co.pantallaabierta.app/", html, "text/html", "utf-8", null)
+        // YouTube solo acepta reproductores incrustados en una página web real (envía
+        // el encabezado Referer). Por eso el reproductor vive en una página https propia.
+        CookieManager.getInstance().setAcceptThirdPartyCookies(web, true)
+        web.loadUrl(PLAYER_PAGE + "?c=" + Uri.encode(channelId))
     }
 
     @Suppress("DEPRECATION")

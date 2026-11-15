@@ -1,1 +1,176 @@
-{"_nota":"Solo enlaces a los sitios y apps OFICIALES de cada canal. La app no copia ni retransmite ninguna señal. Para agregar o corregir un canal, edita este archivo.","channels":[{"id":"senal-colombia","name":"Señal Colombia","category":"Nacional pública","color":"#E30613","url":"https://www.senalcolombia.tv","store_query":"Señal Colombia"},{"id":"canal-institucional","name":"Canal Institucional","category":"Nacional pública","color":"#1F4E9C","url":"https://www.canalinstitucional.tv","store_query":"RTVC Play"},{"id":"canal-1","name":"Canal 1","category":"Nacional","color":"#0055A5","url":"https://canal1.com.co","store_query":"Canal 1 Colombia"},{"id":"caracol","name":"Caracol TV","category":"Nacional privado","color":"#0B6CB5","url":"https://www.caracoltv.com","store_query":"ditu Caracol"},{"id":"rcn","name":"Canal RCN","category":"Nacional privado","color":"#D7261E","url":"https://www.canalrcn.com","store_query":"Canal RCN"},{"id":"teleantioquia","name":"Teleantioquia","category":"Regional","color":"#00843D","url":"https://www.teleantioquia.co","store_query":"Teleantioquia"},{"id":"telecaribe","name":"Telecaribe","category":"Regional","color":"#F39200","url":"https://telecaribe.co","store_query":"Telecaribe"},{"id":"telepacifico","name":"Telepacífico","category":"Regional","color":"#009FE3","url":"https://www.telepacifico.com","store_query":"Telepacífico"},{"id":"telecafe","name":"Telecafé","category":"Regional","color":"#7A4A2A","url":"https://www.telecafe.tv","store_query":"Telecafé"},{"id":"canal-capital","name":"Canal Capital","category":"Regional","color":"#E5007E","url":"https://www.canalcapital.gov.co","store_query":"Canal Capital Bogotá"},{"id":"canal-trece","name":"Canal Trece","category":"Regional","color":"#6A1B9A","url":"https://canaltrece.com.co","store_query":"Canal Trece"},{"id":"canal-tro","name":"Canal TRO","category":"Regional","color":"#C62828","url":"https://www.canaltro.com","store_query":"Canal TRO"},{"id":"teleislas","name":"Teleislas","category":"Regional","color":"#00897B","url":"https://www.teleislas.com.co","store_query":"Teleislas"}]}
+{
+  "_nota": "Cada canal se reproduce dentro de la app desde su canal OFICIAL de YouTube (reproductor incrustado que YouTube permite). Si el canal no está transmitiendo, se puede abrir su página oficial. Para agregar o corregir un canal, edita este archivo.",
+  "channels": [
+    {
+      "id": "senal-colombia",
+      "name": "Señal Colombia",
+      "category": "Nacional pública",
+      "color": "#E30613",
+      "url": "https://www.senalcolombia.tv",
+      "store_query": "Señal Colombia",
+      "youtube_channel": "UCwZjVanaSg019RVQea9V1kw"
+    },
+    {
+      "id": "canal-institucional",
+      "name": "Canal Institucional",
+      "category": "Nacional pública",
+      "color": "#1F4E9C",
+      "url": "https://www.canalinstitucional.tv",
+      "store_query": "RTVC Play",
+      "youtube_channel": "UCacTCU_5Z-5YgoKiJJHn9eQ"
+    },
+    {
+      "id": "canal-1",
+      "name": "Canal 1",
+      "category": "Nacional",
+      "color": "#0055A5",
+      "url": "https://canal1.com.co",
+      "store_query": "Canal 1 Colombia",
+      "youtube_channel": "UCFL53cSDsmpEinezLSleHBA"
+    },
+    {
+      "id": "caracol",
+      "name": "Caracol TV",
+      "category": "Nacional privado",
+      "color": "#0B6CB5",
+      "url": "https://www.caracoltv.com",
+      "store_query": "ditu Caracol",
+      "youtube_channel": "UCcpE1fmG2qBZatj28bak2ng"
+    },
+    {
+      "id": "rcn",
+      "name": "Canal RCN",
+      "category": "Nacional privado",
+      "color": "#D7261E",
+      "url": "https://www.canalrcn.com",
+      "store_query": "Canal RCN",
+      "youtube_channel": "UCSCAJJ1RJ4rfRTVW4gjYTpQ"
+    },
+    {
+      "id": "teleantioquia",
+      "name": "Teleantioquia",
+      "category": "Regional",
+      "color": "#00843D",
+      "url": "https://www.teleantioquia.co",
+      "store_query": "Teleantioquia",
+      "youtube_channel": "UCeq_SgWZDF8h-ujzwBXI5jQ"
+    },
+    {
+      "id": "telecaribe",
+      "name": "Telecaribe",
+      "category": "Regional",
+      "color": "#F39200",
+      "url": "https://telecaribe.co",
+      "store_query": "Telecaribe",
+      "youtube_channel": "UCZudXgtqD1e5L8g92MPZKCw"
+    },
+    {
+      "id": "telepacifico",
+      "name": "Telepacífico",
+      "category": "Regional",
+      "color": "#009FE3",
+      "url": "https://www.telepacifico.com",
+      "store_query": "Telepacífico",
+      "youtube_channel": "UCtub7OO8xPKO7VI16pZTRbA"
+    },
+    {
+      "id": "telecafe",
+      "name": "Telecafé",
+      "category": "Regional",
+      "color": "#7A4A2A",
+      "url": "https://www.telecafe.tv",
+      "store_query": "Telecafé",
+      "youtube_channel": "UCoIrkYZ161GtRP9yl_F-YRA"
+    },
+    {
+      "id": "canal-capital",
+      "name": "Canal Capital",
+      "category": "Regional",
+      "color": "#E5007E",
+      "url": "https://www.canalcapital.gov.co",
+      "store_query": "Canal Capital Bogotá",
+      "youtube_channel": "UCeSx6aU8UGIIHxGCQPbYY_A"
+    },
+    {
+      "id": "canal-trece",
+      "name": "Canal Trece",
+      "category": "Regional",
+      "color": "#6A1B9A",
+      "url": "https://canaltrece.com.co",
+      "store_query": "Canal Trece",
+      "youtube_channel": "UCJBBmUckDiqitomUK7dEQzA"
+    },
+    {
+      "id": "canal-tro",
+      "name": "Canal TRO",
+      "category": "Regional",
+      "color": "#C62828",
+      "url": "https://www.canaltro.com",
+      "store_query": "Canal TRO",
+      "youtube_channel": "UC34ir-riqZUiCOy90X5AFjg"
+    },
+    {
+      "id": "teleislas",
+      "name": "Teleislas",
+      "category": "Regional",
+      "color": "#00897B",
+      "url": "https://www.teleislas.com.co",
+      "store_query": "Teleislas",
+      "youtube_channel": "UC-ALt3lKEHCsLU1a0hE6MHQ"
+    },
+    {
+      "id": "noticias-caracol",
+      "name": "Noticias Caracol",
+      "category": "Noticias",
+      "color": "#0B6CB5",
+      "url": "https://www.noticiascaracol.com",
+      "store_query": "ditu Caracol",
+      "youtube_channel": "UC2Xq2PK-got3Rtz9ZJ32hLQ"
+    },
+    {
+      "id": "noticias-rcn",
+      "name": "Noticias RCN",
+      "category": "Noticias",
+      "color": "#D7261E",
+      "url": "https://www.noticiasrcn.com",
+      "store_query": "Noticias RCN",
+      "youtube_channel": "UCnr6pbeXJmkNQJ9PSYle7QQ"
+    },
+    {
+      "id": "rtvc-noticias",
+      "name": "RTVC Noticias",
+      "category": "Noticias",
+      "color": "#1F4E9C",
+      "url": "https://www.rtvcnoticias.com",
+      "store_query": "RTVC Play",
+      "youtube_channel": "UCykAfJIwT4VSQDFdRrZ1DXA"
+    },
+    {
+      "id": "canal-congreso",
+      "name": "Canal Congreso",
+      "category": "Nacional pública",
+      "color": "#2E7D32",
+      "url": "https://www.canalcongreso.gov.co",
+      "store_query": "Canal Congreso Colombia",
+      "youtube_channel": "UCJfKMFp7dtO8mpHT56X0kJQ"
+    },
+    {
+      "id": "citytv",
+      "name": "CityTv",
+      "category": "Local",
+      "color": "#F57C00",
+      "url": "https://www.citytv.com.co",
+      "store_query": "CityTv Bogotá",
+      "youtube_channel": "UCv5Oy_TJFvGKXjeNzzJE_PQ"
+    },
+    {
+      "id": "telemedellin",
+      "name": "Telemedellín",
+      "category": "Local",
+      "color": "#00A651",
+      "url": "https://telemedellin.tv",
+      "store_query": "Telemedellín",
+      "youtube_channel": "UCENHqi7NXxW30fwepMHsGTw"
+    }
+  ]
+}

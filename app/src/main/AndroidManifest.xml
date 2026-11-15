@@ -41,5 +41,13 @@
             android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/Theme.PantallaAbierta.Fullscreen" />
+
+        <activity
+            android:name=".LivePlayerActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden"
+            android:screenOrientation="sensorLandscape"
+            android:hardwareAccelerated="true"
+            android:theme="@style/Theme.PantallaAbierta.Fullscreen" />
     </application>
 </manifest>

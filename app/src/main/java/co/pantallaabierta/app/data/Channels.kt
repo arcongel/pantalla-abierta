@@ -10,6 +10,8 @@ data class Channel(
     val color: Long,
     val url: String,
     val storeQuery: String,
+    /** ID del canal OFICIAL de YouTube; vacío si no tiene. */
+    val youtubeChannel: String,
 )
 
 object ChannelRepository {
@@ -27,6 +29,7 @@ object ChannelRepository {
                 color = parseColor(o.optString("color", "#455A64")),
                 url = o.getString("url"),
                 storeQuery = o.optString("store_query", o.getString("name")),
+                youtubeChannel = o.optString("youtube_channel"),
             )
         }
     }

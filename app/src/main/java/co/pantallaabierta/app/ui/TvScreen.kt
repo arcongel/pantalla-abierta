@@ -1,5 +1,7 @@
 package co.pantallaabierta.app.ui
 
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -49,7 +51,7 @@ import androidx.compose.ui.unit.sp
 import co.pantallaabierta.app.data.Channel
 import co.pantallaabierta.app.data.ChannelRepository
 import co.pantallaabierta.app.data.Favorites
-import co.pantallaabierta.app.openOfficialApp
+import co.pantallaabierta.app.LivePlayerActivity
 import co.pantallaabierta.app.openOfficialSite
 
 private const val ALL = "Todos"
@@ -81,7 +83,7 @@ fun TvScreen() {
             Column {
                 Text("TV de Colombia", fontSize = 26.sp, fontWeight = FontWeight.Bold)
                 Text(
-                    "Cada canal se ve en su página o app oficial, gratis y con su permiso.",
+                    "Toca un canal para verlo en vivo. La señal viene del canal oficial de cada uno en YouTube.",
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontSize = 14.sp,
                 )
@@ -107,8 +109,8 @@ fun TvScreen() {
                 channel = ch,
                 isFavorite = ch.id in favorites,
                 onToggleFavorite = { favorites = favoritesStore.toggle(ch.id) },
-                onWatch = { openOfficialSite(context, ch.url) },
-                onApp = { openOfficialApp(context, ch.storeQuery) },
+                onWatch = { watchLive(context, ch) },
+                onWeb = { openOfficialSite(context, ch.url) },
             )
         }
     }
@@ -120,7 +122,7 @@ private fun ChannelCard(
     isFavorite: Boolean,
     onToggleFavorite: () -> Unit,
     onWatch: () -> Unit,
-    onApp: () -> Unit,
+    onWeb: () -> Unit,
 ) {
     Card(
         shape = RoundedCornerShape(14.dp),
@@ -157,10 +159,23 @@ private fun ChannelCard(
                 OutlinedButton(onClick = onWatch, contentPadding = PaddingValues(horizontal = 10.dp)) {
                     Text("Ver en vivo", fontSize = 12.sp)
                 }
-                TextButton(onClick = onApp, contentPadding = PaddingValues(horizontal = 6.dp)) {
-                    Text("App", fontSize = 12.sp)
+                TextButton(onClick = onWeb, contentPadding = PaddingValues(horizontal = 6.dp)) {
+                    Text("Web oficial", fontSize = 12.sp)
                 }
             }
         }
     }
+}
+
+/** Abre la transmisión en vivo dentro de la app; si el canal no tiene YouTube oficial, abre su web. */
+private fun watchLive(context: Context, ch: Channel) {
+    if (ch.youtubeChannel.isBlank()) {
+        openOfficialSite(context, ch.url)
+        return
+    }
+    context.startActivity(
+        Intent(context, LivePlayerActivity::class.java)
+            .putExtra(LivePlayerActivity.EXTRA_CHANNEL_ID, ch.youtubeChannel)
+            .putExtra(LivePlayerActivity.EXTRA_NAME, ch.name),
+    )
 }

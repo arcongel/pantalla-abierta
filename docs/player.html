@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Pantalla Abierta · En vivo</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; color: #fff; font-family: sans-serif; }
+  iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
+  p { padding: 24px; text-align: center; }
+</style>
+</head>
+<body>
+<!--
+  Reproductor de Pantalla Abierta. Muestra la transmisión en vivo del canal
+  OFICIAL de YouTube que se indica en ?c=<ID del canal>, con el reproductor
+  incrustado de YouTube. No copia ni guarda ninguna señal.
+-->
+<script>
+  var id = new URLSearchParams(location.search).get('c') || '';
+  if (!/^UC[A-Za-z0-9_-]{22}$/.test(id)) {
+    document.body.innerHTML = '<p>Canal no válido.</p>';
+  } else {
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube.com/embed/live_stream?channel=' + id +
+            '&autoplay=1&playsinline=1&rel=0&hl=es';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    document.body.appendChild(f);
+  }
+</script>
+</body>
+</html>

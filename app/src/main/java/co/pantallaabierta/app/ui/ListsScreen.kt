@@ -119,7 +119,7 @@ fun ListsScreen(vm: ListsViewModel = viewModel()) {
 private fun SavedListsView(vm: ListsViewModel) {
     var name by rememberSaveable { mutableStateOf("") }
     var url by rememberSaveable { mutableStateOf("") }
-    val validUrl = url.trim().startsWith("http://") || url.trim().startsWith("https://")
+    val validUrl = normalizeUrl(url).isNotEmpty()
 
     LazyColumn(contentPadding = PaddingValues(12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         item {
@@ -144,7 +144,7 @@ private fun SavedListsView(vm: ListsViewModel) {
             )
             Spacer(Modifier.height(8.dp))
             Button(
-                onClick = { vm.add(name, url); name = ""; url = "" },
+                onClick = { vm.add(name, normalizeUrl(url)); name = ""; url = "" },
                 enabled = validUrl,
                 modifier = Modifier.fillMaxWidth(),
             ) { Text("Agregar lista") }
@@ -264,8 +264,7 @@ private fun XtreamForm(onAdd: (String, String) -> Unit) {
     var server by rememberSaveable { mutableStateOf("") }
     var user by rememberSaveable { mutableStateOf("") }
     var pass by rememberSaveable { mutableStateOf("") }
-    val ok = (server.trim().startsWith("http://") || server.trim().startsWith("https://")) &&
-        user.isNotBlank() && pass.isNotBlank()
+    val ok = normalizeUrl(server).isNotEmpty() && user.isNotBlank() && pass.isNotBlank()
 
     Text("Cuenta de proveedor (tipo Smarters / Xtream)", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
     Text(
@@ -313,10 +312,27 @@ private fun XtreamForm(onAdd: (String, String) -> Unit) {
 
 private fun xtreamUrl(server: String, user: String, pass: String): String {
     fun enc(s: String) = URLEncoder.encode(s.trim(), "UTF-8")
-    return server.trim().trimEnd('/') + "/get.php?username=" + enc(user) +
+    return normalizeUrl(server).trimEnd('/') + "/get.php?username=" + enc(user) +
         "&password=" + enc(pass) + "&type=m3u_plus&output=m3u8"
 }
 
 /** No muestra la contraseña de las cuentas en pantalla. */
 private fun displayUrl(url: String): String =
     url.replace(Regex("password=[^&]*"), "password=••••")
+
+/**
+ * Acepta la dirección como la escriba la persona: con o sin "http://", con mayúsculas
+ * o espacios. Devuelve "" si no parece una dirección.
+ */
+private fun normalizeUrl(input: String): String {
+    var u = input.trim().replace(" ", "")
+    if (u.isEmpty()) return ""
+    val lower = u.lowercase()
+    u = when {
+        lower.startsWith("http://") -> "http://" + u.substring(7)
+        lower.startsWith("https://") -> "https://" + u.substring(8)
+        else -> "http://$u"
+    }
+    val host = u.substringAfter("://").substringBefore('/').substringBefore('?')
+    return if (host.isNotEmpty() && (host.contains('.') || host.contains(':'))) u else ""
+}

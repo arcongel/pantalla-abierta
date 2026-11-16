@@ -7,9 +7,12 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
+import androidx.media3.common.MimeTypes
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
+import androidx.media3.datasource.DefaultHttpDataSource
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.ui.PlayerView
 
 /** Reproductor a pantalla completa para títulos con licencia libre. */
@@ -18,6 +21,8 @@ class PlayerActivity : Activity() {
     companion object {
         const val EXTRA_URL = "url"
         const val EXTRA_TITLE = "title"
+        const val EXTRA_USER_AGENT = "user_agent"
+        const val EXTRA_REFERRER = "referrer"
     }
 
     private var player: ExoPlayer? = null
@@ -35,13 +40,20 @@ class PlayerActivity : Activity() {
 
         val url = intent.getStringExtra(EXTRA_URL) ?: return finish()
         val title = intent.getStringExtra(EXTRA_TITLE).orEmpty()
-        val p = ExoPlayer.Builder(this).build()
-        p.setMediaItem(
-            MediaItem.Builder()
-                .setUri(url)
-                .setMediaMetadata(MediaMetadata.Builder().setTitle(title).build())
-                .build(),
-        )
+        val userAgent = intent.getStringExtra(EXTRA_USER_AGENT).orEmpty()
+        val referrer = intent.getStringExtra(EXTRA_REFERRER).orEmpty()
+        val http = DefaultHttpDataSource.Factory()
+            .setAllowCrossProtocolRedirects(true)
+            .setUserAgent(userAgent.ifBlank { "PantallaAbierta/1.0 (Android)" })
+        if (referrer.isNotBlank()) http.setDefaultRequestProperties(mapOf("Referer" to referrer))
+        val p = ExoPlayer.Builder(this)
+            .setMediaSourceFactory(DefaultMediaSourceFactory(http))
+            .build()
+        val item = MediaItem.Builder()
+            .setUri(url)
+            .setMediaMetadata(MediaMetadata.Builder().setTitle(title).build())
+        if (url.contains(".m3u8", ignoreCase = true)) item.setMimeType(MimeTypes.APPLICATION_M3U8)
+        p.setMediaItem(item.build())
         p.addListener(object : Player.Listener {
             override fun onPlayerError(error: PlaybackException) {
                 Toast.makeText(this@PlayerActivity, "No se pudo reproducir el video.", Toast.LENGTH_LONG).show()

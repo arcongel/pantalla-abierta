@@ -50,6 +50,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -63,6 +64,7 @@ import co.pantallaabierta.app.data.M3uList
 import co.pantallaabierta.app.data.SavedLists
 import coil.compose.AsyncImage
 import kotlinx.coroutines.launch
+import java.net.URLEncoder
 
 class ListsViewModel(app: Application) : AndroidViewModel(app) {
     private val store = SavedLists(app)
@@ -146,6 +148,8 @@ private fun SavedListsView(vm: ListsViewModel) {
                 enabled = validUrl,
                 modifier = Modifier.fillMaxWidth(),
             ) { Text("Agregar lista") }
+            Spacer(Modifier.height(18.dp))
+            XtreamForm { name, url -> vm.add(name, url) }
         }
         if (vm.lists.isEmpty()) {
             item {
@@ -165,7 +169,7 @@ private fun SavedListsView(vm: ListsViewModel) {
                 Row(Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
                     Column(Modifier.weight(1f)) {
                         Text(l.name, fontWeight = FontWeight.SemiBold)
-                        Text(l.url, fontSize = 12.sp, maxLines = 1, overflow = TextOverflow.Ellipsis,
+                        Text(displayUrl(l.url), fontSize = 12.sp, maxLines = 1, overflow = TextOverflow.Ellipsis,
                             color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     IconButton(onClick = { vm.remove(l) }) { Icon(Icons.Filled.Delete, "Quitar lista") }
@@ -252,3 +256,67 @@ private fun ChannelList(list: M3uList, state: Load<List<M3uChannel>>?, onBack: (
         }
     }
 }
+
+/** Cuenta de proveedor tipo "Xtream Codes" (la que usan apps como IPTV Smarters). */
+@Composable
+private fun XtreamForm(onAdd: (String, String) -> Unit) {
+    var name by rememberSaveable { mutableStateOf("") }
+    var server by rememberSaveable { mutableStateOf("") }
+    var user by rememberSaveable { mutableStateOf("") }
+    var pass by rememberSaveable { mutableStateOf("") }
+    val ok = (server.trim().startsWith("http://") || server.trim().startsWith("https://")) &&
+        user.isNotBlank() && pass.isNotBlank()
+
+    Text("Cuenta de proveedor (tipo Smarters / Xtream)", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+    Text(
+        "Usa los datos que te dio tu proveedor de TV contratado.",
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        fontSize = 14.sp,
+    )
+    Spacer(Modifier.height(8.dp))
+    OutlinedTextField(
+        value = name, onValueChange = { name = it },
+        label = { Text("Nombre (opcional)") }, singleLine = true,
+        modifier = Modifier.fillMaxWidth(),
+    )
+    Spacer(Modifier.height(6.dp))
+    OutlinedTextField(
+        value = server, onValueChange = { server = it },
+        label = { Text("Servidor (http://...)") }, singleLine = true,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Uri),
+        modifier = Modifier.fillMaxWidth(),
+    )
+    Spacer(Modifier.height(6.dp))
+    OutlinedTextField(
+        value = user, onValueChange = { user = it },
+        label = { Text("Usuario") }, singleLine = true,
+        modifier = Modifier.fillMaxWidth(),
+    )
+    Spacer(Modifier.height(6.dp))
+    OutlinedTextField(
+        value = pass, onValueChange = { pass = it },
+        label = { Text("Contraseña") }, singleLine = true,
+        visualTransformation = PasswordVisualTransformation(),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        modifier = Modifier.fillMaxWidth(),
+    )
+    Spacer(Modifier.height(8.dp))
+    Button(
+        onClick = {
+            onAdd(name.ifBlank { user.trim() }, xtreamUrl(server, user, pass))
+            name = ""; server = ""; user = ""; pass = ""
+        },
+        enabled = ok,
+        modifier = Modifier.fillMaxWidth(),
+    ) { Text("Agregar cuenta") }
+}
+
+private fun xtreamUrl(server: String, user: String, pass: String): String {
+    fun enc(s: String) = URLEncoder.encode(s.trim(), "UTF-8")
+    return server.trim().trimEnd('/') + "/get.php?username=" + enc(user) +
+        "&password=" + enc(pass) + "&type=m3u_plus&output=m3u8"
+}
+
+/** No muestra la contraseña de las cuentas en pantalla. */
+private fun displayUrl(url: String): String =
+    url.replace(Regex("password=[^&]*"), "password=••••")

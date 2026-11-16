@@ -1,5 +1,5 @@
 {
-  "_nota": "Cada canal se reproduce dentro de la app desde su canal OFICIAL de YouTube (reproductor incrustado que YouTube permite). Si el canal no está transmitiendo, se puede abrir su página oficial. Para agregar o corregir un canal, edita este archivo.",
+  "_nota": "Cada canal se reproduce dentro de la app desde su canal OFICIAL de YouTube (reproductor incrustado que YouTube permite). Las plataformas gratis (sin canal de YouTube) se abren en su página oficial. Para agregar o corregir un canal, edita este archivo.",
   "channels": [
     {
       "id": "senal-colombia",
@@ -171,6 +171,168 @@
       "url": "https://telemedellin.tv",
       "store_query": "Telemedellín",
       "youtube_channel": "UCENHqi7NXxW30fwepMHsGTw"
+    },
+    {
+      "id": "el-tiempo",
+      "name": "El Tiempo TV",
+      "category": "Noticias",
+      "color": "#1B1B1B",
+      "url": "https://www.eltiempo.com",
+      "store_query": "El Tiempo",
+      "youtube_channel": "UCe5-b0fCK3eQCpwS6MT0aNw"
+    },
+    {
+      "id": "dw-espanol",
+      "name": "DW Español",
+      "category": "Internacional",
+      "color": "#05B2FC",
+      "url": "https://www.dw.com/es",
+      "store_query": "DW",
+      "youtube_channel": "UCT4Jg8h03dD0iN3Pb5L0PMA"
+    },
+    {
+      "id": "france24-es",
+      "name": "France 24 Español",
+      "category": "Internacional",
+      "color": "#00A3E0",
+      "url": "https://www.france24.com/es/",
+      "store_query": "France 24",
+      "youtube_channel": "UCUdOoVWuWmgo1wByzcsyKDQ"
+    },
+    {
+      "id": "euronews-es",
+      "name": "Euronews Español",
+      "category": "Internacional",
+      "color": "#0A2A5E",
+      "url": "https://es.euronews.com",
+      "store_query": "Euronews",
+      "youtube_channel": "UCyoGb3SMlTlB8CLGVH4c8Rw"
+    },
+    {
+      "id": "rtve-24h",
+      "name": "RTVE Canal 24 Horas",
+      "category": "Internacional",
+      "color": "#E4002B",
+      "url": "https://www.rtve.es/play/videos/directo/canales-lineales/24h/",
+      "store_query": "RTVE Play",
+      "youtube_channel": "UC7QZIf0dta-XPXsp9Hv4dTw"
+    },
+    {
+      "id": "telemundo-noticias",
+      "name": "Noticias Telemundo",
+      "category": "Latinoamérica",
+      "color": "#2E2A6E",
+      "url": "https://www.telemundo.com/noticias",
+      "store_query": "Telemundo",
+      "youtube_channel": "UCRwA1NUcUnwsly35ikGhp0A"
+    },
+    {
+      "id": "nmas-univision",
+      "name": "N+ Univision",
+      "category": "Latinoamérica",
+      "color": "#5B2C83",
+      "url": "https://www.univision.com/noticias",
+      "store_query": "ViX",
+      "youtube_channel": "UC32TdiIsh_5X8tKr_9rKQyA"
+    },
+    {
+      "id": "nmas",
+      "name": "N+ (México)",
+      "category": "Latinoamérica",
+      "color": "#111111",
+      "url": "https://www.nmas.com.mx",
+      "store_query": "N+",
+      "youtube_channel": "UCUsm-fannqOY02PNN67C0KA"
+    },
+    {
+      "id": "milenio",
+      "name": "Milenio",
+      "category": "Latinoamérica",
+      "color": "#B71C1C",
+      "url": "https://www.milenio.com",
+      "store_query": "Milenio",
+      "youtube_channel": "UCFxHplbcoJK9m70c4VyTIxg"
+    },
+    {
+      "id": "canal-once",
+      "name": "Canal Once (México)",
+      "category": "Latinoamérica",
+      "color": "#6A1B9A",
+      "url": "https://canalonce.mx",
+      "store_query": "Canal Once",
+      "youtube_channel": "UCqaOSuXiGdnuoqXBda-XD2A"
+    },
+    {
+      "id": "canal-22",
+      "name": "Canal 22 (México)",
+      "category": "Latinoamérica",
+      "color": "#C2185B",
+      "url": "https://www.canal22.org.mx",
+      "store_query": "Canal 22",
+      "youtube_channel": "UCwFaHK7ir817prgY5Y-qemw"
+    },
+    {
+      "id": "tn",
+      "name": "TN Todo Noticias",
+      "category": "Latinoamérica",
+      "color": "#0D47A1",
+      "url": "https://tn.com.ar",
+      "store_query": "TN Todo Noticias",
+      "youtube_channel": "UCj6PcyLvpnIRT_2W_mwa9Aw"
+    },
+    {
+      "id": "ecuavisa",
+      "name": "Ecuavisa",
+      "category": "Latinoamérica",
+      "color": "#1565C0",
+      "url": "https://www.ecuavisa.com",
+      "store_query": "Ecuavisa",
+      "youtube_channel": "UCRUV3nUNSc-xpBrTwQOCQQg"
+    },
+    {
+      "id": "teleamazonas",
+      "name": "Teleamazonas",
+      "category": "Latinoamérica",
+      "color": "#00838F",
+      "url": "https://www.teleamazonas.com",
+      "store_query": "Teleamazonas",
+      "youtube_channel": "UCCwRtme3lumNRQXMO2EvCvw"
+    },
+    {
+      "id": "tvperu-noticias",
+      "name": "TVPerú Noticias",
+      "category": "Latinoamérica",
+      "color": "#D32F2F",
+      "url": "https://www.tvperu.gob.pe",
+      "store_query": "TVPerú",
+      "youtube_channel": "UCkZCoc42IipR1ucqJmIehsA"
+    },
+    {
+      "id": "pluto-tv",
+      "name": "Pluto TV",
+      "category": "Plataformas gratis",
+      "color": "#FFE600",
+      "url": "https://pluto.tv",
+      "store_query": "Pluto TV",
+      "youtube_channel": ""
+    },
+    {
+      "id": "vix",
+      "name": "ViX",
+      "category": "Plataformas gratis",
+      "color": "#FF6A13",
+      "url": "https://vix.com",
+      "store_query": "ViX",
+      "youtube_channel": ""
+    },
+    {
+      "id": "rtvc-play",
+      "name": "RTVC Play",
+      "category": "Plataformas gratis",
+      "color": "#1F4E9C",
+      "url": "https://www.rtvcplay.co",
+      "store_query": "RTVC Play",
+      "youtube_channel": ""
     }
   ]
 }

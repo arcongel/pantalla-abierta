@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -26,6 +27,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import co.pantallaabierta.app.ui.ListsScreen
 import co.pantallaabierta.app.ui.MoviesScreen
 import co.pantallaabierta.app.ui.TvScreen
 
@@ -61,11 +63,21 @@ class MainActivity : ComponentActivity() {
                                 icon = { Icon(Icons.Filled.Star, contentDescription = null) },
                                 label = { Text("Películas y series") },
                             )
+                            NavigationBarItem(
+                                selected = tab == 2,
+                                onClick = { tab = 2 },
+                                icon = { Icon(Icons.Filled.List, contentDescription = null) },
+                                label = { Text("Mis listas") },
+                            )
                         }
                     },
                 ) { padding ->
                     Box(Modifier.padding(padding)) {
-                        if (tab == 0) TvScreen() else MoviesScreen()
+                        when (tab) {
+                            0 -> TvScreen()
+                            1 -> MoviesScreen()
+                            else -> ListsScreen()
+                        }
                     }
                 }
             }

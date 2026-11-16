@@ -333,6 +333,24 @@
       "url": "https://www.rtvcplay.co",
       "store_query": "RTVC Play",
       "youtube_channel": ""
+    },
+    {
+      "id": "plex",
+      "name": "Plex (TV gratis)",
+      "category": "Plataformas gratis",
+      "color": "#E5A00D",
+      "url": "https://watch.plex.tv/live-tv",
+      "store_query": "Plex",
+      "youtube_channel": ""
+    },
+    {
+      "id": "canela-tv",
+      "name": "Canela TV",
+      "category": "Plataformas gratis",
+      "color": "#C2185B",
+      "url": "https://www.canela.tv",
+      "store_query": "Canela TV",
+      "youtube_channel": ""
     }
   ]
 }
